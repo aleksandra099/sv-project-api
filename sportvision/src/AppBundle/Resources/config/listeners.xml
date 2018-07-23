@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+
+<!--definisanje servisa: koriscenje preko id-a , notacija sv(sport_vision)_api.nesto.nesto
+    argument: dependency injection - ubacivanje jednog servisa u drugi (simfonijev servis za forme koji se zove form.factory)
+    servisi u simfoniju su singletoni
+
+    <tag name="kernel.event_listener" definise se da je servis ustvari listener    event="kernel.controller" kada se opali ovaj event
+       poziva se metod onKernelController iz klase AppBundle\EventListener\QueryTypeEventListener
+       priority="-255"/> prioritet
+ -->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sv_api.listener.query_type" class="AppBundle\EventListener\QueryTypeEventListener">
+            <argument type="service" id="form.factory"/>
+            <tag name="kernel.event_listener" event="kernel.controller" priority="-255"/>
+        </service>
+    </services>
+</container>
