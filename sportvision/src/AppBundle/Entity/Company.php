@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 
-class Company
+class Company implements \JsonSerializable
 {
     /**
      * @var int
@@ -15,5 +15,13 @@ class Company
      */
     private $name;
 
+
+
+    function jsonSerialize()
+    {
+        return [
+            'name' => $this-> name,
+        ];
+    }
 
 }

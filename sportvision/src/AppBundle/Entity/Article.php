@@ -59,6 +59,10 @@ class Article implements \JsonSerializable
      */
     private $sport;
 
+    /**
+     * @var int
+     */
+    private $company;
 
     public function getId(): int
     {
@@ -167,19 +171,19 @@ class Article implements \JsonSerializable
         return $this->sport;
     }
 
-   /* public function isOutlet(): bool
+    public function getCompany(): int
     {
-        return $this->outlet;
+        return $this->company;
     }
 
-    public function setOutlet(bool $outlet)
+    public function setCompany(id $company)
     {
-        $this->outlet = $outlet;
-    } */
+        $this->company = $company;
+    }
+
     function jsonSerialize()
     {
         return [
-            'id' => $this->id,
             'name' => $this-> name,
             'code' => $this->code,
             'image' => $this->imageUrl,
@@ -190,6 +194,7 @@ class Article implements \JsonSerializable
             'sizes' => $this->sizes,
             'updatedAt' => $this->updatedAt,
             'sport' => $this->sport,
+            'company' => $this->company,
         ];
     }
 

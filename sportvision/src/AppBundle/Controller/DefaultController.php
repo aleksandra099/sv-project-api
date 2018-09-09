@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Configuration\QueryType;
 use AppBundle\Entity\Article;
+use AppBundle\Entity\Company;
 use AppBundle\Input\ArticleFilterInput;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -23,6 +24,21 @@ class DefaultController extends Controller
             'info' => phpinfo(),
             'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ));
+    }
+
+    /**
+     * @Method("GET")
+     * @Route("/firme")
+     */
+    public function listCompaniesAction(Request $request)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()
+            ->getRepository(Company::class);
+        $companies= $repository->findAll();
+
+        return new JsonResponse(array('companies' => $companies));
+
     }
 
     /**

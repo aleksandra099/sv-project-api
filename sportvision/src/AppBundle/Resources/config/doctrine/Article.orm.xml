@@ -18,5 +18,10 @@
               <option name="default">CURRENT_TIMESTAMP</option>
             </options>
     </field>
+
+    <many-to-one  field="company" target-entity="Company">
+      <join-column name="company_id" referenced-column-name="id" />
+    </many-to-one>
+
   </entity>
 </doctrine-mapping>
